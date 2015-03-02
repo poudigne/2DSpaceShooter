@@ -31,9 +31,13 @@ public class PlayerController : MonoBehaviour {
 			Instantiate ( shot, shotSpawn.position, shotSpawn.rotation);	
 			audio.Play();
 		}
+
+		float moveHorizontal = Input.GetAxis ("Horizontal");
+        float moveVertical = Input.GetAxis ("Vertical");
+
 		Vector3 direction = Vector3.zero;
-		direction.x = Input.acceleration.x;
-		direction.z = Input.acceleration.y;
+		direction.x = (moveHorizontal > 0.0f ? moveHorizontal : Input.acceleration.x);
+		direction.z = (moveVertical > 0.0f ? moveVertical : Input.acceleration.y);
 		
 		if ( direction.sqrMagnitude > 1 )
 		{
