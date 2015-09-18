@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour {
 
 			nextFire = Time.time + fireRate;
 			Instantiate ( shot, shotSpawn.position, shotSpawn.rotation);	
-			audio.Play();
+			GetComponent<AudioSource>().Play();
 		}
 
 		float moveHorizontal = Input.GetAxis ("Horizontal");
@@ -58,14 +58,14 @@ public class PlayerController : MonoBehaviour {
 		
 		
 
-		ResetSpaceShipPosition (rigidbody);
-		rigidbody.rotation = Quaternion.Euler (0.0f, 0.0f, rigidbody.velocity.x * -tilt);
+		ResetSpaceShipPosition (GetComponent<Rigidbody>());
+		GetComponent<Rigidbody>().rotation = Quaternion.Euler (0.0f, 0.0f, GetComponent<Rigidbody>().velocity.x * -tilt);
 	}
 
 	void ResetSpaceShipPosition(Rigidbody rigidBody){
-		float x = Mathf.Clamp (rigidbody.position.x, boundary.xMin, boundary.xMax);
-		float z = Mathf.Clamp (rigidbody.position.z, boundary.zMin, boundary.zMax);
-		rigidbody.position = new Vector3 (x,0.0f,z);
+		float x = Mathf.Clamp (GetComponent<Rigidbody>().position.x, boundary.xMin, boundary.xMax);
+		float z = Mathf.Clamp (GetComponent<Rigidbody>().position.z, boundary.zMin, boundary.zMax);
+		GetComponent<Rigidbody>().position = new Vector3 (x,0.0f,z);
 	}
 
 

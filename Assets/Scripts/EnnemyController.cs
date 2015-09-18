@@ -16,7 +16,7 @@ public class EnnemyController : MonoBehaviour {
 			
 			nextFire = Time.time + fireRate;
 			Instantiate ( shot, shotSpawn.position, shotSpawn.rotation);	
-			audio.Play();
+			GetComponent<AudioSource>().Play();
 		}
 		transform.Translate( transform.forward * speed );
 	}
